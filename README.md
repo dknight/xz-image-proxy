@@ -6,11 +6,9 @@
 
 XZImageProxy is a framework-agnostic web component to show image helper for layout.
 
-[XZ Image Proxy example](https://github.com/dknight/xz-image-proxy/blob/main/demo/main.png)
+[XZ Image Proxy example](https://raw.githubusercontent.com/dknight/xz-image-proxy/main/demo/main.png)
 
-https://github.com/dknight/xz-image-proxy/blob/main/LICENSE
-
-[Check demo](https://www.whoop.ee/xz-image-proxy/demo).
+[Check demo](https://www.whoop.ee/xz-image-proxy/demo)
 
 ## Install
 
@@ -24,24 +22,23 @@ Or just download the source and include it in your HTML.
 
 ## Usage
 
-
 ### script tag
 
 ```html
 <script type="module" src="./xz-image-proxy.js"></script>
 ```
-
-#### CDN 
+### CDN 
+```html
+<!-- preferably in <head> -->
+<script src="https://unpkg.com/xz-image-proxy@latest/dist/xz-image-proxy.min.js" type="module"></script>
+```
 
 Just include link from CDN and you are ready to go.
 
 ```html
-<!-- preferably in <head> -->
-<script src="https://unpkg.com/xz-image-proxy@latest/dist/xz-image-proxy.min.js" type="module"></script>
 <!-- inside <body> -->
 <xz-image-proxy width="320" height="240">Hello world!</xz-image-proxy>
 ```
-
 
 ## Contribution
 
