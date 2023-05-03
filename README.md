@@ -6,7 +6,7 @@
 
 XZImageProxy is a framework-agnostic web component to show image helper for layout.
 
-[XZ Image Proxy example](https://raw.githubusercontent.com/dknight/xz-image-proxy/main/demo/main.png)
+![XZ Image Proxy example](https://raw.githubusercontent.com/dknight/xz-image-proxy/main/demo/main.png)
 
 [Check demo](https://www.whoop.ee/xz-image-proxy/demo)
 
