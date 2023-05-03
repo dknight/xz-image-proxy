@@ -1,0 +1,12 @@
+:host {
+  --w: 100%;
+  --h: 100%;
+  width: var(--w);
+  height: var(--h);
+  background: #d3d3d3;
+  font: normal 1.5em sans-serif;
+  color: #666;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
