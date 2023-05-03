@@ -4,7 +4,7 @@
  *
  * @author Dmitri Smirnov <https://www.whoop.ee/>
  * @license MIT 2023
- * @version 0.0.0
+ * @version 1.0.0
  * @extends HTMLElement
  *
  * @property {string} [width="100%"] Width of the image.
