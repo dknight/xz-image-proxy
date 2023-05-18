@@ -2,7 +2,7 @@
 
 [![License MIT](https://img.shields.io/npm/l/xz-image-proxy)](https://github.com/dknight/xz-image-proxy/blob/main/LICENSE)
 [![Build](https://github.com/dknight/xz-image-proxy/actions/workflows/node.js.yml/badge.svg)](https://github.com/dknight/xz-image-proxy/actions/workflows/node.js.yml)
-![Version](https://img.shields.io/npm/v/xz-image-proxy)
+[![Version](https://img.shields.io/npm/v/xz-image-proxy)](https://www.npmjs.com/package/xz-image-proxy)
 
 XZImageProxy is a framework-agnostic web component to show image helper for layout.
 
@@ -27,10 +27,15 @@ Or just download the source and include it in your HTML.
 ```html
 <script type="module" src="./xz-image-proxy.js"></script>
 ```
-### CDN 
+
+### CDN
+
 ```html
 <!-- preferably in <head> -->
-<script src="https://unpkg.com/xz-image-proxy@latest/dist/xz-image-proxy.min.js" type="module"></script>
+<script
+  src="https://unpkg.com/xz-image-proxy@latest/dist/xz-image-proxy.min.js"
+  type="module"
+></script>
 ```
 
 Just include link from CDN and you are ready to go.
