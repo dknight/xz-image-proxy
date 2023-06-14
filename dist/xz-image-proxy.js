@@ -5,11 +5,8 @@
  *
  * @author Dmitri Smirnov <https://www.whoop.ee/>
  * @license MIT 2023
- * @version 1.0.0
+ * @version 2.0.1
  * @extends HTMLElement
- *
- * @property {string} [width="100%"] Width of the image.
- * @property {string} [height="100%"] Height of the image
  *
  * @example
  * <xz-image-proxy width="100%" height="50%"></xz-image-proxy>
@@ -78,9 +75,6 @@ class XZImageProxy extends HTMLElement {
     });
     this.resizeObserver.observe(this);
   }
-  /**
-   * @inheritDoc
-   */
   disconnectedCallback() {
     this.resizeObserver.disconnect();
   }
