@@ -1,9 +1,9 @@
-import XZImageProxy from '../index.js';
+import XZImageProxy from '../src/xz-image-proxy';
 
 describe('Should test', () => {
-  let component;
+  let component: XZImageProxy;
   beforeEach(() => {
-    component = document.createElement(XZImageProxy.TAG_NAME);
+    component = document.createElement(XZImageProxy.TAG_NAME) as XZImageProxy;
   });
   afterEach(() => {
     if (document.body.contains(component)) {

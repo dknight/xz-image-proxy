@@ -9,7 +9,7 @@ version=$(node -e "console.log(require('./package.json').version)")
 minified=$(cat $SRC/$BASENAME.css | $ESBUILD --minify --loader=css)
 banner="//$BASENAME.min.js,${version},https://github.com/dknight/xz-image-proxy"
 
-cp $SRC/$BASENAME.js $DIST/$BASENAME.js
+$ESBUILD $SRC/$BASENAME.ts --outfile=$DIST/$BASENAME.js
 
 # Substitute
 sed -i "s/{{CSS}}/$minified/g" $DIST/$BASENAME.js

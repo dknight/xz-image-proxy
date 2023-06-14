@@ -7,47 +7,55 @@
  * @version {{VERSION}}
  * @extends HTMLElement
  *
- * @property {string} [width="100%"] Width of the image.
- * @property {string} [height="100%"] Height of the image
- *
  * @example
  * <xz-image-proxy width="100%" height="50%"></xz-image-proxy>
  */
-class XZImageProxy extends HTMLElement {
+
+interface IXZImageProxy {
+  width: string;
+  height: string;
+  attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string
+  ): void;
+  connectedCallback(): void;
+  disconnectedCallback(): void;
+}
+
+class XZImageProxy extends HTMLElement implements IXZImageProxy {
   /**
    * Tag name
-   * @type {string}
    */
-  static TAG_NAME = 'xz-image-proxy';
+  static TAG_NAME: string = 'xz-image-proxy';
 
   /**
    * Observed attributes for web-component.
    */
-  static observedAttributes = ['width', 'height'];
+  static observedAttributes: string[] = ['width', 'height'];
 
-  #resizeObserver = null;
-  #styleElem = document.createElement('style');
-  #span = document.createElement('span');
-
-  /**
-   * @constructor
-   */
-  constructor() {
+  constructor(
+    private root: ShadowRoot,
+    private styleElem: HTMLStyleElement,
+    private span: HTMLSpanElement,
+    private resizeObserver: ResizeObserver,
+    public width: string = '100%',
+    public height: string = '100%'
+  ) {
     super();
-    this.width = '100%';
-    this.height = '100%';
+    this.span = document.createElement('span');
+    this.styleElem = document.createElement('style');
+
+    this.styleElem.textContent = `{{CSS}}`;
     this.root = this.attachShadow({mode: 'open'});
-    this.root.append(this.#styleElem, this.#span);
-    this.#styleElem.textContent = `{{CSS}}`;
+    this.root.append(this.styleElem, this.span);
   }
 
   /**
    * Parses the width or height, if it hasn't any units then assumed that
    * these are pixels.
-   * @param {number|string} size
-   * @return {string}
    */
-  #parseSize = (size) => {
+  private parseSize = (size: string | number): string => {
     let str = String(size);
     if (str.match(/^-?[0-9]+$/)) {
       str += 'px';
@@ -58,20 +66,17 @@ class XZImageProxy extends HTMLElement {
   /**
    * Draws size and a11y for proxy.
    */
-  #draw = () => {
+  private draw = (): void => {
     const [w, h] = [Number.parseInt(this.width), Number.parseInt(this.height)];
-    this.#span.textContent = `${w}×${h}`;
+    this.span.textContent = `${w}×${h}`;
     this.setAttribute('aria-label', `Image proxy ${w}×${h}`);
   };
 
-  /**
- * @inheritDoc
- */
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) {
       return;
     }
-    const v = this.#parseSize(newValue);
+    const v = this.parseSize(newValue);
     switch (name) {
       case 'width':
         this.style.setProperty('--w', v);
@@ -82,31 +87,25 @@ class XZImageProxy extends HTMLElement {
         this.height = v;
         break;
     }
-    this.#draw();
+    this.draw();
   }
 
-  /**
-   * @inheritDoc
-   */
   connectedCallback() {
     this.setAttribute('role', 'img');
-    this.#resizeObserver = new ResizeObserver((entries) => {
+    this.resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.contentRect) {
-          this.width = entry.contentRect.width;
-          this.height = entry.contentRect.height;
-          this.#draw();
+          this.width = `${entry.contentRect.width}px`;
+          this.height = `${entry.contentRect.height}px`;
+          this.draw();
         }
       }
     });
-    this.#resizeObserver.observe(this);
+    this.resizeObserver.observe(this);
   }
 
-  /**
-   * @inheritDoc
-   */
   disconnectedCallback() {
-    this.#resizeObserver.disconnect();
+    this.resizeObserver.disconnect();
   }
 }
 
