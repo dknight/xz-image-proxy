@@ -8,7 +8,7 @@ XZImageProxy is a framework-agnostic web component to show image helper for layo
 
 ![XZ Image Proxy example](https://raw.githubusercontent.com/dknight/xz-image-proxy/main/demo/main.png)
 
-[Check demo](https://www.whoop.ee/xz-image-proxy/demo)
+[Check demo](https://dknight.github.io/xz-image-proxy/)
 
 ## Install
 
